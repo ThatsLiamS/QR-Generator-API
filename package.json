@@ -1,0 +1,12 @@
+{
+	"name": "qr-code-generator",
+	"version": "0.1.0",
+	"description": "Full Stack Web Application - QR Code Generator",
+	"license": "MIT",
+	"author": "Liam Skinner",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
+}

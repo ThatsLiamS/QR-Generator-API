@@ -1,0 +1,62 @@
+name: Backend Bug Report - QR Generator
+description: Report a bug in the backend service responsible for generating QR codes.
+labels: [backend, bug, qr-generation]
+body:
+  - type: textarea
+    attributes:
+      label: Description of the Bug
+      description: A clear and concise description of the issue in the QR code generation service. Include details like the resulting error code, unexpected QR output, or failure to communicate with the client.
+    validations:
+      required: true
+---
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: The minimal steps required to trigger the bug on the backend. This might involve specific API call details, input parameters, or a sequence of operations.
+      placeholder: |
+          1. Send a POST request to '/api/v1/generate' with payload: { "data": "...", "size": 300, "ecc_level": "M" }
+          2. Server returns a 500 Internal Server Error instead of the image data.
+          3. Check the application logs for the corresponding request ID.
+    validations:
+      required: true
+---
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what the backend service should have done (e.g., returned a 200 OK with a valid PNG, logged a specific warning instead of an error, or correctly applied the input parameters).
+    validations:
+      required: true
+---
+  - type: input
+    attributes:
+      label: API Endpoint and Method
+      description: The specific backend endpoint and HTTP method used (e.g., POST /api/v1/generate).
+    validations:
+      required: true
+---
+  - type: input
+    attributes:
+      label: Generation Parameters (Input Data)
+      description: The exact parameters sent to the backend service (e.g., the URL/text encoded, size, error correction level).
+      placeholder: '{"data": "https://example.com/page", "size": 512, "ecc_level": "H"}'
+    validations:
+      required: true
+---
+  - type: input
+    attributes:
+      label: Backend/Library Version
+      description: The version of the core QR generation library or service component where the bug occurred (e.g., python-qrcode v7.3.1, Go service v1.2.0).
+    validations:
+      required: true
+---
+  - type: textarea
+    attributes:
+      label: Relevant Assets, Logs, and Stack Traces
+      description: |
+          Attach relevant server logs, full stack traces, request/response headers, or the raw output of the faulty QR code if applicable.
+
+          Tip: You can attach image(s) or log file(s) by clicking this area to highlight it and then dragging files in.
+      placeholder: |
+          Include the full stack trace and any related server request IDs or transaction IDs.
+    validations:
+      required: false

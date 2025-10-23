@@ -1,0 +1,52 @@
+name: Feature Request - QR Generator Backend
+description: Propose a new feature, capability, or improvement for the QR code generation service.
+labels: [enhancement, backend]
+body:
+  - type: textarea
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the new feature. What should the backend be able to do that it currently cannot?
+      placeholder: |
+        Example: Implement support for generating colored QR codes by accepting 'color_hex' parameters in the API request.
+    validations:
+      required: true
+---
+  - type: textarea
+    attributes:
+      label: Problem or Use Case This Feature Solves
+      description: What is the known problem, limitation, or new use case this feature addresses? Why is it needed?
+      placeholder: |
+        I'm always frustrated when clients ask for branded QR codes, as the current system only generates black and white images. This feature would unlock a major client requirement for custom branding.
+    validations:
+      required: false
+---
+  - type: textarea
+    attributes:
+      label: Describe Alternatives You've Considered
+      description: A clear and concise description of any alternative solutions, workarounds, or features you've considered. Why is the proposed feature better?
+      placeholder: |
+        Alternative 1: Having the frontend/client side handle the colorization. This is less ideal because it adds processing overhead and complexity to the client, and we lose control over color standardization.
+    validations:
+      required: true
+---
+  - type: textarea
+    attributes:
+      label: Technical Requirements or Impact
+      description: |
+        If known, describe the technical changes required (e.g., new dependencies, changes to API endpoints, database schema updates).
+      placeholder: |
+        Requires updating the core generation library (or implementing a wrapper) to accept foreground/background color hex codes (e.g., #FF0000). The '/generate' API endpoint must be updated to accept two new optional query parameters: 'fg_color' and 'bg_color'.
+    validations:
+      required: false
+---
+  - type: textarea
+    attributes:
+      label: Relevant Assets, Benchmarks, or Documentation
+      description: |
+        A list of assets (e.g., documentation for a library, example output, performance benchmarks) relevant to this feature.
+
+        Tip: You can attach image(s) or log file(s) by clicking this area to highlight it and then dragging files in.
+      placeholder: |
+        Link to the library documentation: https://example-qrcode-lib.com/color-feature.
+    validations:
+      required: false
