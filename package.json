@@ -8,5 +8,13 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.38.0",
+		"eslint": "^9.38.0",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-security": "^3.0.1",
+		"eslint-plugin-unicorn": "^61.0.2",
+		"globals": "^16.4.0"
 	}
 }

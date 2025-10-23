@@ -1,6 +1,7 @@
 # Dependency directories
 node_modules/
-jspm_packages/
+.vscode/
+package-lock.json
 
 # Databases
 .dynamodb/
