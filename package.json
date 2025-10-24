@@ -4,10 +4,9 @@
 	"description": "Full Stack Web Application - QR Code Generator",
 	"license": "MIT",
 	"author": "Liam Skinner",
-	"type": "commonjs",
-	"main": "index.js",
+	"private": true,
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node ./src/bin/www"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.38.0",
@@ -16,5 +15,13 @@
 		"eslint-plugin-security": "^3.0.1",
 		"eslint-plugin-unicorn": "^61.0.2",
 		"globals": "^16.4.0"
+	},
+	"dependencies": {
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"express": "^5.1.0",
+		"http-errors": "~1.6.3",
+		"jade": "~1.11.0",
+		"morgan": "~1.9.1"
 	}
 }
