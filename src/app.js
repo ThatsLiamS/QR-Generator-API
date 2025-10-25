@@ -2,15 +2,25 @@ const path = require('path');
 
 const cookieParser = require('cookie-parser');
 const express = require('express');
+const firebaseAdmin = require('firebase-admin');
 const createError = require('http-errors');
 const logger = require('morgan');
 
+
+// Initialize the Firebase Admin SDK
+const serviceAccount = process.env.firebaseServiceKey;
+firebaseAdmin.initializeApp({
+	credential: firebaseAdmin.credential.cert(serviceAccount),
+});
+console.log('Firebase Admin SDK initialized');
+
+
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// Application middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,21 +29,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Routers
-const adminRouter = require('./routes/admin');
-const analyticsRouter = require('./routes/analytics');
-const authRouter = require('./routes/auth');
-const qrRouter = require('./routes/qrcodes');
-const systemRouter = require('./routes/system');
-const userRouter = require('./routes/users');
-
-
-// Mount routes
-app.use('/api/v1/admin', adminRouter);
-app.use('/api/v1/analytics', analyticsRouter);
-app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/qrcodes', qrRouter);
-app.use('/api/v1/system', systemRouter);
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/admin', require('./routes/admin'));
+app.use('/api/v1/analytics', require('./routes/analytics'));
+app.use('/api/v1/auth', require('./routes/auth'));
+app.use('/api/v1/qrcodes', require('./routes/qrcodes'));
+app.use('/api/v1/system', require('./routes/system'));
+app.use('/api/v1/users', require('./routes/users'));
 
 
 // Redirect routes (for tracking scans)

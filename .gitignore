@@ -3,7 +3,8 @@ node_modules/
 .vscode/
 package-lock.json
 
-# Databases
+# Databases, and environment secrets
+.env
 .dynamodb/
 .firebase/
 
