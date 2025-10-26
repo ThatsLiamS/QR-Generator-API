@@ -21,8 +21,6 @@
 		"debug": "~2.6.9",
 		"express": "^5.1.0",
 		"firebase-admin": "^13.5.0",
-		"http-errors": "~1.6.3",
-		"jade": "~1.11.0",
 		"morgan": "~1.9.1"
 	}
 }

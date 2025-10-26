@@ -1,9 +1,6 @@
-const path = require('path');
-
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const firebaseAdmin = require('firebase-admin');
-const createError = require('http-errors');
 const logger = require('morgan');
 
 
@@ -17,15 +14,11 @@ console.log('Firebase Admin SDK initialized');
 
 const app = express();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 // Application middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Routers
@@ -40,21 +33,12 @@ app.use('/api/v1/users', require('./routes/users'));
 // Redirect routes (for tracking scans)
 app.get('/r/:id', (_req, _res) => { /* redirect handler */ });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-	next(createError(404));
-});
-
 
 // error handler
-app.use(function(err, req, res, _next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-	// render the error page
-	res.status(err.status || 500);
-	res.render('error');
+app.use((req, _res, next) => {
+	next({ statusCode: 404, name: 'NotFoundError', message: `Route not found: ${req.originalUrl}` });
 });
+app.use(require('./middleware/errorHandler'));
+
 
 module.exports = app;
