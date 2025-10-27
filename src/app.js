@@ -1,18 +1,9 @@
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const firebaseAdmin = require('firebase-admin');
 const logger = require('morgan');
 
-
-// Initialize the Firebase Admin SDK
-const serviceAccount = process.env.firebaseServiceKey;
-firebaseAdmin.initializeApp({
-	credential: firebaseAdmin.credential.cert(serviceAccount),
-});
-console.log('Firebase Admin SDK initialized');
-
-
 const app = express();
+
 
 // Application middleware
 app.use(logger('dev'));
