@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+
 // --- Public Routes ---
 
 /**
- * @route GET /health
+ * @route GET /system/health
  * @group System
  * @summary A simple health check endpoint to confirm the API is running.
+ * @access Public
  * 
  * @returns {Object} 200 - An object with a 'status' property
  * @returns {Error} 500 - An unexpected internal server error
@@ -15,7 +17,7 @@ const router = express.Router();
  */
 router.get('/health', (_req, res, next) => {
 	try {
-		res.status(200).json({
+		return res.status(200).json({
 			status: 'ok',
 		});
 	} catch {
@@ -24,9 +26,10 @@ router.get('/health', (_req, res, next) => {
 });
 
 /**
- * @route GET /status
+ * @route GET /system/status
  * @group System
  * @summary Provides detailed system and environment status
+ * @access Public
  * 
  * @returns {Object} 200 - An object with detailed status properties
  * @returns {Error} 500 - An unexpected internal server error
@@ -35,7 +38,7 @@ router.get('/health', (_req, res, next) => {
  */
 router.get('/status', (_req, res, next) => {
 	try {
-		res.status(200).json({
+		return res.status(200).json({
 			status: 'ok',
 			environment: (process.env.isProduction === 'true') ? 'production' : 'development',
 			uptime: process.uptime(),
@@ -51,9 +54,10 @@ router.get('/status', (_req, res, next) => {
 });
 
 /**
- * @route GET /config
+ * @route GET /system/config
  * @group System
  * @summary Provides public-facing configuration for the client
+ * @access Public
  * 
  * @returns {Object} 200 - An object with public-facing configurations
  * @returns {Error} 500 - An unexpected internal server error
@@ -62,7 +66,7 @@ router.get('/status', (_req, res, next) => {
  */
 router.get('/config', (_req, res, next) => {
 	try {
-		res.status(200).json({
+		return res.status(200).json({
 			appName: 'QR Code Generator',
 			validationRules: {
 				maxQrCodesPerUser: 5,

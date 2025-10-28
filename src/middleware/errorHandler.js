@@ -1,14 +1,15 @@
 /**
  * @group Middleware
- * @summary Handles all uncaught and forwarded errors across the Express app.
+ * @summary Formats and sends all uncaught and forwarded errors as a standardized JSON response.
+ * @access Public
  * 
- * @returns {Error} Sends a standardized JSON error response
+ * @returns {Error} Sends a JSON response to the client with the formatted error.
  * 
  * @author Liam Skinner <me@liamskinner.co.uk>
  */
 const errorHandler = (err, _req, res, _next) => {
 
-	const jsonResponse = {
+	const errorResponse = {
 		statusCode: err.statusCode || 500,
 		status: 'error',
 		name: err.name || 'UnknownError',
@@ -16,10 +17,11 @@ const errorHandler = (err, _req, res, _next) => {
 	};
 
 	if (process.env.isProduction === 'false' && err.stack) {
-		jsonResponse.stack = err.stack;
+		errorResponse.stack = err.stack;
 	}
 
-	res.status(jsonResponse.statusCode).json(jsonResponse);
+	res.status(errorResponse.statusCode).json(errorResponse);
 };
+
 
 module.exports = errorHandler;

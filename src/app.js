@@ -25,7 +25,7 @@ app.use('/api/v1/users', require('./routes/users'));
 app.get('/r/:id', (_req, _res) => { /* redirect handler */ });
 
 
-// error handler
+// Error handler
 app.use((req, _res, next) => {
 	next({ statusCode: 404, name: 'NotFoundError', message: `Route not found: ${req.originalUrl}` });
 });

@@ -1,9 +1,8 @@
 const express = require('express');
-const firebaseAdmin = require('firebase-admin');
 
-const firestore = require('./../utility/firebase');
-
+const { firestore, firebaseAdmin } = require('./../utility/firebase');
 const router = express.Router();
+
 
 // --- Public Routes ---
 
@@ -103,10 +102,10 @@ router.delete('/me', async (req, res, next) => {
 
 	try {
 		const scanEventsQuery = firestore.collection('scanEvents').where('ownerId', '==', authenticatedUserId);
-		await firestore.deleteQueryBatch(scanEventsQuery, firestore);
+		await firestore.deleteQueryBatch(scanEventsQuery);
 
 		const qrcodesQuery = firestore.collection('qrcodes').where('ownerId', '==', authenticatedUserId);
-		await firestore.deleteQueryBatch(qrcodesQuery, firestore);
+		await firestore.deleteQueryBatch(qrcodesQuery);
 
 		const userRef = firestore.collection('users').doc(authenticatedUserId);
 		await userRef.delete();
