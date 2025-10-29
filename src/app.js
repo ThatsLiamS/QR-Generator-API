@@ -22,7 +22,7 @@ app.use('/api/v1/users', require('./routes/users'));
 
 
 // Redirect routes (for tracking scans)
-app.get('/r/:id', (_req, _res) => { /* redirect handler */ });
+app.use('/r', require('./routes/redirect'));
 
 
 // Error handler
